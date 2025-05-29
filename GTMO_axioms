@@ -1,0 +1,217 @@
+# GTMØ – Generalized Theory of Mathematical Indefiniteness (Ø)
+# Kompletny system: Aksjomaty, definicje, twierdzenia, równania, dedukcje, operatory, sprzężenie zwrotne, dynamiczne progi
+
+# autor: Grzegorz (Greg) Skuza
+
+# --- FORMAL DEFINITIONS ---   # EN: FORMAL DEFINITIONS
+# --- DEFINICJE FORMALNE ---   # PL: DEFINICJE FORMALNE
+DEF1 = "Definition: Knowledge particle Ψᴷ – a fragment such that Ψ_GTMØ(x) ≥ dynamic particle threshold."
+DEF2 = "Definition: Knowledge shadow Ψʰ – a fragment such that Ψ_GTMØ(x) ≤ dynamic shadow threshold."
+DEF3 = "Definition: Cognitive entropy E_GTMØ(x) = -Σ pᵢ log₂ pᵢ, where pᵢ are semantic partitions of x."
+DEF1_dyn = "(Dynamic) Definition: Knowledge particle Ψᴷ – fragment with Ψ_GTMØ(x) ≥ particle threshold (dynamic percentile)."
+DEF2_dyn = "(Dynamic) Definition: Knowledge shadow Ψʰ – fragment with Ψ_GTMØ(x) ≤ shadow threshold (dynamic percentile)."
+DEF1_pl = "Definicja: Cząstka wiedzy Ψᴷ – fragment poznania, dla którego Ψ_GTMØ(x) ≥ dynamiczny próg cząstek."
+DEF2_pl = "Definicja: Cień wiedzy Ψʰ – fragment o Ψ_GTMØ(x) ≤ dynamiczny próg cieni."
+DEF3_pl = "Definicja: Entropia poznawcza E_GTMØ(x) = -Σ pᵢ log₂ pᵢ, pᵢ – podziały semantyczne x."
+DEF1_dyn_pl = "Definicja (dynamiczna): Cząstka wiedzy Ψᴷ – fragment, dla którego Ψ_GTMØ(x) ≥ próg_cząstek (dynamiczny percentyl)."
+DEF2_dyn_pl = "Definicja (dynamiczna): Cień wiedzy Ψʰ – fragment, dla którego Ψ_GTMØ(x) ≤ próg_cieni (dynamiczny percentyl)."
+GTMØ_definitions = [DEF1, DEF2, DEF3, DEF1_dyn, DEF2_dyn, DEF1_pl, DEF2_pl, DEF3_pl, DEF1_dyn_pl, DEF2_dyn_pl]
+
+# --- AXIOMS GTMØ ---           # EN: AXIOMS GTMØ
+# --- AKSJOMATY GTMØ ---        # PL: AKSJOMATY GTMØ
+AX1 = "Ø is a fundamentally different mathematical category: Ø ∉ {0, 1, ∞} ∧ ¬∃f, D: f(D) = Ø, D ⊆ {0,1,∞}"
+AX2 = "Translogical isolation: ¬∃f: D → Ø, D ⊆ DefinableSystems"
+AX3 = "Epistemic singularity: ¬∃S: Know(Ø) ∈ S, S ∈ CognitiveSystems"
+AX4 = "Non-representability: Ø ∉ Repr(S), ∀S ⊇ {0,1,∞}"
+AX5 = "Topological boundary: Ø ∈ ∂(CognitiveSpace)"
+AX6 = "Heuristic extremum: E_GTMØ(Ø) = min E_GTMØ(x), x ∈ KnowledgeDomain"
+AX7 = "Meta-closure: Ø ∈ MetaClosure(GTMØ) ∧ Ø triggers system self-evaluation"
+# --- MODYFIKOWANE AKSJOMATY ---
+AX8_v2 = "Ø is not a topological limit point: ¬∃Seq(xₙ) ⊆ Domain(GTMØ): lim(xₙ) = Ø"
+AX9_v2 = "Operator irreducibility (strict): ¬∃Op ∈ StandardOperators: Op(Ø) = x, x ∈ Domain(GTMØ)"
+AX10 = "Meta-operator definition: Ψ_GTMØ, E_GTMØ are meta-operators acting on Ø"
+GTMØ_axioms = [AX1, AX2, AX3, AX4, AX5, AX6, AX7, AX8_v2, AX9_v2, AX10]
+
+# --- THEOREMS, EQUATIONS, DEDUCTIONS --- # EN: THEOREMS, ...  # PL: TWIERDZENIA, ...
+TH1 = "Ø is not the limit of any defined process: ¬lim(x→∞) f(x) = Ø"
+TH2 = "Ø is not part of any semantic category: ∀S ∈ SemanticSystems, Ø ∉ Categories(S)"
+TH3 = "Ø determines the minimum of cognitive entropy: ∀x, E_GTMØ(Ø) ≤ E_GTMØ(x)"
+TH4 = "Ø is a boundary of any knowledge domain: ∀S, Ø ∈ ∂S"
+TH5 = "Ø is irreducible to any system transformation: ¬∃Φ: Φ(Ø) = P, P ∈ Domain(GTMØ)"
+TH6 = "For any knowledge particle Ψᴷ, Ψ_GTMØ(Ψᴷ) ≥ dynamic particle threshold ∧ E_GTMØ(Ψᴷ) ≪ E_GTMØ(Ψʰ)"
+TH7 = "For any knowledge shadow Ψʰ, Ψ_GTMØ(Ψʰ) ≤ dynamic shadow threshold ∧ E_GTMØ(Ψʰ) ≫ E_GTMØ(Ψᴷ)"
+TH8 = "Classification thresholds Ψᴷ and Ψʰ are a function of the global knowledge quality distribution: ∃f: threshold_Ψᴷ, threshold_Ψʰ = f(scores, t)"
+TH9 = "GTMØ minimizes cognitive noise and adapts the boundary of sense through iterative self-evaluation of thresholds."
+GTMØ_theorems = [TH1, TH2, TH3, TH4, TH5, TH6, TH7, TH8, TH9]
+
+# --- OPERATORS GTMØ ---         # EN: OPERATORS GTMØ
+# --- OPERATORY GTMØ ---         # PL: OPERATORY GTMØ
+
+def dynamic_thresholds(all_scores, K_percentile=85, H_percentile=15):
+    """
+    EN: Computes dynamic thresholds Ψᴷ/Ψʰ for classification based on the percentile of global score distribution.
+    PL: Oblicza dynamiczne progi Ψᴷ/Ψʰ do klasyfikacji na podstawie percentyli globalnego rozkładu score.
+    """
+    import numpy as np
+    K_thr = np.percentile(all_scores, K_percentile)
+    H_thr = np.percentile(all_scores, H_percentile)
+    return K_thr, H_thr
+
+def φ_GTMØ(t):
+    """
+    EN: Returns cognitive trajectory at time t with a singularity at Ø.
+    PL: Zwraca trajektorię poznawczą w czasie t z osobliwością przy Ø.
+    """
+    return f"φ_GTMØ({t}) = Trajectory(t) with singularity at Ø"
+
+class Operator:
+    STANDARD = 1
+    META = 2
+
+def Ψ_GTMØ(x, all_scores, operator_type=Operator.META):
+    """
+    EN: Returns score and type, supporting meta-operator logic for Ø.
+    PL: Zwraca score i typ, wspierając logikę meta-operatora dla Ø.
+    """
+    if x == "Ø":
+        if operator_type != Operator.META:
+            raise ValueError("Standard operators cannot process Ø")
+        return {'score': 1.0, 'type': "Ø (singularity)"}
+    import random
+    score = random.uniform(0, 1)
+    K_thr, H_thr = dynamic_thresholds(all_scores)
+    if score >= K_thr:
+        label = "Ψᴷ (particle)"
+    elif score <= H_thr:
+        label = "Ψʰ (shadow)"
+    else:
+        label = "Ψᴧ (other fragment)"
+    return {
+        'score': score,
+        'type': label,
+        'thresholds': {'K_thr': K_thr, 'H_thr': H_thr},
+        'explanation': f"Dynamic thresholds: Ψᴷ ≥ {K_thr:.2f}, Ψʰ ≤ {H_thr:.2f}; score={score:.2f}"
+    }
+
+def E_GTMØ(x):
+    """
+    EN: Returns total entropy and partitioned entropy (Ψᴷ, Ψʰ) for a knowledge fragment.
+    PL: Zwraca całkowitą entropię i entropię podzieloną (Ψᴷ, Ψʰ) dla fragmentu wiedzy.
+    """
+    import math
+    parts = [0.6, 0.25, 0.15]  # EN/PL: Dummy partition – replace with real semantic split.
+    total_entropy = -sum(p * math.log2(p) for p in parts)
+    entropy_PsiK = -parts[0] * math.log2(parts[0])
+    entropy_Psih = -parts[2] * math.log2(parts[2])
+    return {
+        'total_entropy': total_entropy,
+        'Ψᴷ_entropy': entropy_PsiK,
+        'Ψʰ_entropy': entropy_Psih,
+        'explanation': "EN: Partitioned into particles/shadows relative to Ø. PL: Podział na cząstki/cienie względem Ø."
+    }
+
+def meta_feedback_loop(fragments, all_scores, iterations=5):
+    """
+    EN: Advanced meta-feedback loop for GTMØ. Tracks trajectory, entropy, types, and adapts heuristics dynamically. Detects emergence of new Ψ types.
+    PL: Zaawansowana meta-pętla sprzężenia zwrotnego GTMØ. Śledzi trajektorie, entropię, typy, dynamicznie adaptuje heurystyki. Wykrywa emergencję nowych typów Ψ.
+    """
+    history = []
+    thresholds_evolution = []
+    types_evolution = []
+    entropy_evolution = []
+    new_types_detected = set()
+    for i in range(iterations):
+        scores = []
+        types = []
+        entropies = []
+        for frag in fragments:
+            result = Ψ_GTMØ(frag, all_scores)
+            psi = result['type'] if isinstance(result, dict) else result[0]['type']
+            scores.append(result['score'] if isinstance(result, dict) else result[0]['score'])
+            types.append(psi)
+            ent = E_GTMØ(frag)
+            entropies.append(ent['total_entropy'])
+            # --- DETEKCJA EMERGENCJI NOWYCH TYPÓW Ψ ---
+            if "paradoks" in frag.lower() or "sprzeczność" in frag.lower() or "meta-" in frag.lower():
+                new_types_detected.add("Ψᴺ (novel/emergent)")
+        thresholds = dynamic_thresholds(scores)
+        thresholds_evolution.append(thresholds)
+        types_evolution.append(types)
+        entropy_evolution.append(entropies)
+        K_thr, H_thr = thresholds
+        if types.count("Ψʰ (shadow)")/len(types) > 0.5:
+            K_thr = min(K_thr + 0.05, 1.0)
+            H_thr = max(H_thr - 0.05, 0.0)
+        history.append({
+            'iteration': i+1,
+            'scores': scores,
+            'types': types,
+            'thresholds': (K_thr, H_thr),
+            'entropies': entropies
+        })
+    return {
+        'history': history,
+        'thresholds_evolution': thresholds_evolution,
+        'types_evolution': types_evolution,
+        'entropy_evolution': entropy_evolution,
+        'new_types_detected': list(new_types_detected)
+    }
+
+if __name__ == "__main__":
+    import random
+    all_scores = [random.uniform(0, 1) for _ in range(99)]
+    print("# AXIOMS / AKSJOMATY GTMØ")
+    for i, ax in enumerate(GTMØ_axioms, 1):
+        print(f"Axiom/Aksjomat {i}: {ax}")
+
+    print("\n# DEFINITIONS / DEFINICJE")
+    for i, df in enumerate(GTMØ_definitions, 1):
+        print(f"Def {i}: {df}")
+
+    print("\n# THEOREMS / TWIERDZENIA")
+    for i, th in enumerate(GTMØ_theorems, 1):
+        print(f"Theorem/Twierdzenie {i}: {th}")
+
+    print("\n# OPERATIONAL THEOREMS / TWIERDZENIA OPERACYJNE")
+    for i, th in enumerate(GTMØ_operational_theorems, 1):
+        print(f"Operational Theorem/Twierdzenie Operacyjne {i}: {th}")
+
+    print("\n# EXAMPLES (DYNAMIC THRESHOLDS & META-FEEDBACK LOOP DEMO)")
+    for i in range(5):
+        wynik = Ψ_GTMØ(f"fragment_{i}", all_scores)
+        print(f"Fragment {i}: {wynik}")
+
+    print("\n# TEST: Ψ_GTMØ on x = 'Ø' (META operator)")
+    wynik_Ø = Ψ_GTMØ("Ø", all_scores, operator_type=Operator.META)
+    print(f"Ψ_GTMØ('Ø', META): {wynik_Ø}")
+
+    print("\n# TEST: Ψ_GTMØ on x = 'Ø' (STANDARD operator) -- expect exception")
+    try:
+        wynik_Ø_std = Ψ_GTMØ("Ø", all_scores, operator_type=Operator.STANDARD)
+        print(f"Ψ_GTMØ('Ø', STANDARD): {wynik_Ø_std}")
+    except Exception as e:
+        print(f"Exception (as expected): {e}")
+
+    # --- PRZYKŁADOWE FRAGMENTY Z EMERGENCJĄ I NOWYMI TYPAMI Ψ ---
+    test_fragments_emergence = [
+        "W roku 1969 Neil Armstrong był pierwszym człowiekiem na Księżycu.",
+        "Można powiedzieć, że każda sytuacja jest inna.",
+        "To jest sprzeczność: bycie i niebycie jednocześnie.",
+        "Paradoks kłamcy pokazuje granice języka.",
+        "Meta-wiedza o tym, jak działają heurystyki GTMØ.",
+        "Pi jest liczbą niewymierną, jej wartość to około 3.14159."
+    ]
+    print("\n# META-FEEDBACK LOOP / META-PĘTLA SPRZĘŻENIA ZWROTNEGO")
+    meta_result = meta_feedback_loop(test_fragments_emergence, all_scores, iterations=3)
+    for step in meta_result['history']:
+        print(f"Iteration {step['iteration']} - Types: {step['types']}, Thresholds: {step['thresholds']}, Entropy: {step['entropies']}")
+    print(f"\nNew Ψ types detected (Emergent): {meta_result['new_types_detected']}")
+
+"""
+# Efekty dynamicznych progów i adaptacji GTMØ:
+# - Granice Ψᴷ (particles) i Ψʰ (shadows) nie są sztywne – system GTMØ automatycznie je dostraja do aktualnej epistemicznej sytuacji korpusu.
+# - Zmiana progu Ψᴷ powoduje, że do tej klasy trafiają tylko najbardziej „jasne”, wyraźne fragmenty wiedzy, niezależnie od szumu i liczby przykładów.
+# - Zmiana progu Ψʰ pozwala na dynamiczną detekcję fragmentów najbardziej nieokreślonych (cieni), nawet jeśli zmienia się jakość całej bazy wiedzy.
+# - Jeśli całość wiedzy staje się mniej precyzyjna, progi się zaostrzają – GTMØ nie zaniża wymagań poznawczych!
+# - Meta-feedback loop iteracyjnie może uczyć system, które progi najlepiej wyłapują realne Ψᴷ i Ψʰ w danym środowisku (meta-adaptacja, zgodna z AX7).
+"""
