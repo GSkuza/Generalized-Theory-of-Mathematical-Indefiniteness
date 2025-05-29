@@ -1,6 +1,6 @@
 # ℓ∅ – Alienated Numbers in GTMØ
 
-## 📘 1. “Belongs to no known classical number set”
+## 1. “Belongs to no known classical number set”
 
 Alienated numbers (ℓ∅) do not belong to any known classical set of numbers, such as:
 
@@ -18,13 +18,13 @@ They also do not belong to extended systems such as:
 
 ℓ∅ does not satisfy the axioms of structures that define these sets — and does not adhere to their operations.
 
-⛔ **Formally:**
+**Formally:**
 
 ```
 ℓ∅ ∉ ⋃{ℕ, ℤ, ℚ, ℝ, ℂ, ℍ, ℙ-adics, FieldExtensions, etc.}
 ```
 
-## 🔢 2. “Cannot be reduced to algebraic, trigonometric, or formal form”
+## 2. “Cannot be reduced to algebraic, trigonometric, or formal form”
 
 Alienated numbers cannot be expressed in any known mathematical language through:
 
@@ -35,7 +35,7 @@ Alienated numbers cannot be expressed in any known mathematical language through
 
 ℓ∅ is not the solution to any equation — neither in a finite number of steps nor via generalized infinite limits.
 
-⛔ **Formally:**
+**Formally:**
 
 ```
 ¬∃f, x₁,…,xₙ ∈ D: ℓ∅ = f(x₁,…,xₙ)
@@ -43,7 +43,7 @@ Alienated numbers cannot be expressed in any known mathematical language through
 
 Where `f` is any function defined in a known formal system (e.g., ZFC logic, Peano arithmetic, real analysis, etc.).
 
-## 🧨 3. “Mathematical operations on ℓ∅ lead to the emergence of Ø”
+## 3. “Mathematical operations on ℓ∅ lead to the emergence of Ø”
 
 This is the most fundamental aspect: ℓ∅ is a mathematical precursor of Ø. This means:
 
@@ -51,7 +51,7 @@ This is the most fundamental aspect: ℓ∅ is a mathematical precursor of Ø. T
 - Infinite indeterminacy, logical inconsistency, or evaluation failure emerge.
 - The result is the emergence of Ø, triggering indefiniteness.
 
-🌀 **Heuristic example:**
+**Heuristic example:**
 
 An AI cognitive system analyzing equations involving ℓ∅ detects:
 - Lack of assignable semantics  
