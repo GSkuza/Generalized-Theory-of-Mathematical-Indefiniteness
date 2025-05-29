@@ -1,10 +1,8 @@
 # GTMØ – Generalized Theory of Mathematical Indefiniteness (Ø)
 # Kompletny system: Aksjomaty, definicje, twierdzenia, równania, dedukcje, operatory, sprzężenie zwrotne, dynamiczne progi
 
-# autor: Grzegorz (Greg) Skuza
-
-# --- FORMAL DEFINITIONS ---   # EN: FORMAL DEFINITIONS
-# --- DEFINICJE FORMALNE ---   # PL: DEFINICJE FORMALNE
+# --- FORMAL DEFINITIONS ---    # EN: FORMAL DEFINITIONS
+# --- DEFINICJE FORMALNE ---    # PL: DEFINICJE FORMALNE
 DEF1 = "Definition: Knowledge particle Ψᴷ – a fragment such that Ψ_GTMØ(x) ≥ dynamic particle threshold."
 DEF2 = "Definition: Knowledge shadow Ψʰ – a fragment such that Ψ_GTMØ(x) ≤ dynamic shadow threshold."
 DEF3 = "Definition: Cognitive entropy E_GTMØ(x) = -Σ pᵢ log₂ pᵢ, where pᵢ are semantic partitions of x."
@@ -17,8 +15,8 @@ DEF1_dyn_pl = "Definicja (dynamiczna): Cząstka wiedzy Ψᴷ – fragment, dla k
 DEF2_dyn_pl = "Definicja (dynamiczna): Cień wiedzy Ψʰ – fragment, dla którego Ψ_GTMØ(x) ≤ próg_cieni (dynamiczny percentyl)."
 GTMØ_definitions = [DEF1, DEF2, DEF3, DEF1_dyn, DEF2_dyn, DEF1_pl, DEF2_pl, DEF3_pl, DEF1_dyn_pl, DEF2_dyn_pl]
 
-# --- AXIOMS GTMØ ---           # EN: AXIOMS GTMØ
-# --- AKSJOMATY GTMØ ---        # PL: AKSJOMATY GTMØ
+# --- AXIOMS GTMØ ---            # EN: AXIOMS GTMØ
+# --- AKSJOMATY GTMØ ---         # PL: AKSJOMATY GTMØ
 AX1 = "Ø is a fundamentally different mathematical category: Ø ∉ {0, 1, ∞} ∧ ¬∃f, D: f(D) = Ø, D ⊆ {0,1,∞}"
 AX2 = "Translogical isolation: ¬∃f: D → Ø, D ⊆ DefinableSystems"
 AX3 = "Epistemic singularity: ¬∃S: Know(Ø) ∈ S, S ∈ CognitiveSystems"
@@ -44,8 +42,17 @@ TH8 = "Classification thresholds Ψᴷ and Ψʰ are a function of the global kno
 TH9 = "GTMØ minimizes cognitive noise and adapts the boundary of sense through iterative self-evaluation of thresholds."
 GTMØ_theorems = [TH1, TH2, TH3, TH4, TH5, TH6, TH7, TH8, TH9]
 
-# --- OPERATORS GTMØ ---         # EN: OPERATORS GTMØ
-# --- OPERATORY GTMØ ---         # PL: OPERATORY GTMØ
+# --- OPERATIONAL THEOREMS GTMØ --- # EN: OPERATIONAL THEOREMS ... # PL: TWIERDZENIA OPERACYJNE ...
+# Placeholder for operational theorems - define them here if available
+# Poniżej miejsce na zdefiniowanie twierdzeń operacyjnych - dodaj je, jeśli są dostępne
+GTMØ_operational_theorems = []
+# Przykład, gdyby istniały:
+# OTH1 = "Operational Theorem 1: Description of the theorem."
+# GTMØ_operational_theorems = [OTH1]
+
+
+# --- OPERATORS GTMØ ---        # EN: OPERATORS GTMØ
+# --- OPERATORY GTMØ ---        # PL: OPERATORY GTMØ
 
 def dynamic_thresholds(all_scores, K_percentile=85, H_percentile=15):
     """
@@ -53,6 +60,8 @@ def dynamic_thresholds(all_scores, K_percentile=85, H_percentile=15):
     PL: Oblicza dynamiczne progi Ψᴷ/Ψʰ do klasyfikacji na podstawie percentyli globalnego rozkładu score.
     """
     import numpy as np
+    if not all_scores: # Handle empty list to avoid numpy error
+        return 0.0, 0.0
     K_thr = np.percentile(all_scores, K_percentile)
     H_thr = np.percentile(all_scores, H_percentile)
     return K_thr, H_thr
@@ -77,9 +86,11 @@ def Ψ_GTMØ(x, all_scores, operator_type=Operator.META):
         if operator_type != Operator.META:
             raise ValueError("Standard operators cannot process Ø")
         return {'score': 1.0, 'type': "Ø (singularity)"}
+    
     import random
     score = random.uniform(0, 1)
-    K_thr, H_thr = dynamic_thresholds(all_scores)
+    K_thr, H_thr = dynamic_thresholds(all_scores if all_scores else [score]) # ensure all_scores is not empty for dynamic_thresholds
+    
     if score >= K_thr:
         label = "Ψᴷ (particle)"
     elif score <= H_thr:
@@ -99,10 +110,16 @@ def E_GTMØ(x):
     PL: Zwraca całkowitą entropię i entropię podzieloną (Ψᴷ, Ψʰ) dla fragmentu wiedzy.
     """
     import math
-    parts = [0.6, 0.25, 0.15]  # EN/PL: Dummy partition – replace with real semantic split.
-    total_entropy = -sum(p * math.log2(p) for p in parts)
-    entropy_PsiK = -parts[0] * math.log2(parts[0])
-    entropy_Psih = -parts[2] * math.log2(parts[2])
+    # EN/PL: Dummy partition – replace with real semantic split if x is analyzed.
+    # For Ø, entropy is minimal (as per AX6), but this function isn't specific to Ø.
+    # This could be extended: if x == "Ø": return {'total_entropy': 0, ...} (or a very small value)
+    parts = [0.6, 0.25, 0.15] 
+    
+    # Avoid math.log2(0) if any part is 0, or if p is 1 (log2(1)=0 but 0*log0 is tricky)
+    total_entropy = -sum(p * math.log2(p) for p in parts if p > 0) 
+    entropy_PsiK = -parts[0] * math.log2(parts[0]) if parts[0] > 0 else 0
+    entropy_Psih = -parts[2] * math.log2(parts[2]) if parts[2] > 0 else 0
+    
     return {
         'total_entropy': total_entropy,
         'Ψᴷ_entropy': entropy_PsiK,
@@ -110,7 +127,7 @@ def E_GTMØ(x):
         'explanation': "EN: Partitioned into particles/shadows relative to Ø. PL: Podział na cząstki/cienie względem Ø."
     }
 
-def meta_feedback_loop(fragments, all_scores, iterations=5):
+def meta_feedback_loop(fragments, initial_all_scores, iterations=5):
     """
     EN: Advanced meta-feedback loop for GTMØ. Tracks trajectory, entropy, types, and adapts heuristics dynamically. Detects emergence of new Ψ types.
     PL: Zaawansowana meta-pętla sprzężenia zwrotnego GTMØ. Śledzi trajektorie, entropię, typy, dynamicznie adaptuje heurystyki. Wykrywa emergencję nowych typów Ψ.
@@ -120,35 +137,78 @@ def meta_feedback_loop(fragments, all_scores, iterations=5):
     types_evolution = []
     entropy_evolution = []
     new_types_detected = set()
+    
+    current_all_scores = list(initial_all_scores) # Use a mutable copy
+
     for i in range(iterations):
-        scores = []
-        types = []
-        entropies = []
-        for frag in fragments:
-            result = Ψ_GTMØ(frag, all_scores)
-            psi = result['type'] if isinstance(result, dict) else result[0]['type']
-            scores.append(result['score'] if isinstance(result, dict) else result[0]['score'])
-            types.append(psi)
+        iteration_scores = []
+        iteration_types = []
+        iteration_entropies = []
+        
+        # Process fragments and collect their scores for this iteration
+        temp_fragment_scores = []
+        processed_fragments_data = []
+
+        for frag_idx, frag in enumerate(fragments):
+            # Use current_all_scores for threshold calculation within Ψ_GTMØ
+            result = Ψ_GTMØ(frag, current_all_scores) 
+            
+            # Safely access keys assuming Ψ_GTMØ always returns a dict for non-"Ø" or the specific "Ø" dict
+            frag_score = result.get('score')
+            frag_type = result.get('type')
+
+            if frag_score is not None:
+                temp_fragment_scores.append(frag_score)
+            
             ent = E_GTMØ(frag)
-            entropies.append(ent['total_entropy'])
+            
+            processed_fragments_data.append({
+                'score': frag_score,
+                'type': frag_type,
+                'entropy': ent.get('total_entropy')
+            })
+
             # --- DETEKCJA EMERGENCJI NOWYCH TYPÓW Ψ ---
-            if "paradoks" in frag.lower() or "sprzeczność" in frag.lower() or "meta-" in frag.lower():
+            if isinstance(frag, str) and ("paradoks" in frag.lower() or "sprzeczność" in frag.lower() or "meta-" in frag.lower()):
                 new_types_detected.add("Ψᴺ (novel/emergent)")
-        thresholds = dynamic_thresholds(scores)
-        thresholds_evolution.append(thresholds)
-        types_evolution.append(types)
-        entropy_evolution.append(entropies)
-        K_thr, H_thr = thresholds
-        if types.count("Ψʰ (shadow)")/len(types) > 0.5:
-            K_thr = min(K_thr + 0.05, 1.0)
-            H_thr = max(H_thr - 0.05, 0.0)
+        
+        # Update current_all_scores with scores from this iteration's fragments for the *next* iteration's global context
+        # This is a simple way to make 'all_scores' evolve. More sophisticated logic might be needed.
+        if temp_fragment_scores:
+             current_all_scores.extend(temp_fragment_scores)
+             # Optional: keep current_all_scores from growing indefinitely, e.g., by taking last N scores
+             current_all_scores = current_all_scores[-max(len(initial_all_scores), len(current_all_scores)//2):]
+
+
+        # Calculate thresholds based on the scores collected *in this iteration* or current_all_scores
+        # Using current_all_scores reflects a more global, evolving context
+        K_thr, H_thr = dynamic_thresholds(current_all_scores)
+        thresholds_evolution.append((K_thr, H_thr))
+
+        # Re-classify or just record types based on current fragment processing
+        for data in processed_fragments_data:
+            iteration_scores.append(data['score'])
+            iteration_types.append(data['type'])
+            iteration_entropies.append(data['entropy'])
+            
+        types_evolution.append(list(iteration_types)) # Ensure a copy is appended
+        entropy_evolution.append(list(iteration_entropies)) # Ensure a copy is appended
+        
+        # Adapt thresholds based on classification outcome
+        if iteration_types: # Avoid division by zero
+            shadow_ratio = iteration_types.count("Ψʰ (shadow)") / len(iteration_types)
+            if shadow_ratio > 0.5:
+                K_thr = min(K_thr + 0.05, 1.0)
+                H_thr = max(H_thr - 0.05, 0.0)
+        
         history.append({
-            'iteration': i+1,
-            'scores': scores,
-            'types': types,
-            'thresholds': (K_thr, H_thr),
-            'entropies': entropies
+            'iteration': i + 1,
+            'scores': list(iteration_scores), # Ensure a copy
+            'types': list(iteration_types),   # Ensure a copy
+            'thresholds': (K_thr, H_thr),     # This is the adapted threshold for *next* use or record
+            'entropies': list(iteration_entropies) # Ensure a copy
         })
+        
     return {
         'history': history,
         'thresholds_evolution': thresholds_evolution,
@@ -159,7 +219,12 @@ def meta_feedback_loop(fragments, all_scores, iterations=5):
 
 if __name__ == "__main__":
     import random
-    all_scores = [random.uniform(0, 1) for _ in range(99)]
+    # Initialize all_scores with a base set of scores. This list will evolve in meta_feedback_loop.
+    initial_all_scores = [random.uniform(0, 1) for _ in range(99)] 
+    # Add one specific score for Ø to ensure it's part of the initial distribution if desired,
+    # though Ψ_GTMØ handles "Ø" specially and doesn't use its score for threshold calculation in the same way.
+    # For simplicity, we'll keep initial_all_scores for general fragments.
+    
     print("# AXIOMS / AKSJOMATY GTMØ")
     for i, ax in enumerate(GTMØ_axioms, 1):
         print(f"Axiom/Aksjomat {i}: {ax}")
@@ -173,21 +238,36 @@ if __name__ == "__main__":
         print(f"Theorem/Twierdzenie {i}: {th}")
 
     print("\n# OPERATIONAL THEOREMS / TWIERDZENIA OPERACYJNE")
-    for i, th in enumerate(GTMØ_operational_theorems, 1):
-        print(f"Operational Theorem/Twierdzenie Operacyjne {i}: {th}")
+    if GTMØ_operational_theorems: # Check if the list is not empty
+        for i, th in enumerate(GTMØ_operational_theorems, 1):
+            print(f"Operational Theorem/Twierdzenie Operacyjne {i}: {th}")
+    else:
+        print("Brak zdefiniowanych twierdzeń operacyjnych.") # Message if list is empty
 
     print("\n# EXAMPLES (DYNAMIC THRESHOLDS & META-FEEDBACK LOOP DEMO)")
-    for i in range(5):
-        wynik = Ψ_GTMØ(f"fragment_{i}", all_scores)
-        print(f"Fragment {i}: {wynik}")
+    # Use initial_all_scores for these individual calls before the loop modifies it
+    example_fragments_for_psi_demo = [f"fragment_{i}" for i in range(5)]
+    if not initial_all_scores and example_fragments_for_psi_demo: # Ensure all_scores is not empty if we have fragments
+        # Provide a fallback if initial_all_scores was empty for some reason
+        temp_scores_for_psi_demo = [random.uniform(0,1) for _ in example_fragments_for_psi_demo]
+    else:
+        temp_scores_for_psi_demo = initial_all_scores
+
+    for i, frag_name in enumerate(example_fragments_for_psi_demo):
+        # Pass a non-empty list to Ψ_GTMØ for threshold calculation.
+        # If temp_scores_for_psi_demo is empty, dynamic_thresholds would use a default or could error.
+        # Ψ_GTMØ now handles this by passing its own score if all_scores is empty.
+        wynik = Ψ_GTMØ(frag_name, temp_scores_for_psi_demo)
+        print(f"Fragment {i} ('{frag_name}'): {wynik}")
+
 
     print("\n# TEST: Ψ_GTMØ on x = 'Ø' (META operator)")
-    wynik_Ø = Ψ_GTMØ("Ø", all_scores, operator_type=Operator.META)
+    wynik_Ø = Ψ_GTMØ("Ø", initial_all_scores, operator_type=Operator.META) # all_scores isn't used for "Ø"
     print(f"Ψ_GTMØ('Ø', META): {wynik_Ø}")
 
     print("\n# TEST: Ψ_GTMØ on x = 'Ø' (STANDARD operator) -- expect exception")
     try:
-        wynik_Ø_std = Ψ_GTMØ("Ø", all_scores, operator_type=Operator.STANDARD)
+        wynik_Ø_std = Ψ_GTMØ("Ø", initial_all_scores, operator_type=Operator.STANDARD)
         print(f"Ψ_GTMØ('Ø', STANDARD): {wynik_Ø_std}")
     except Exception as e:
         print(f"Exception (as expected): {e}")
@@ -202,9 +282,19 @@ if __name__ == "__main__":
         "Pi jest liczbą niewymierną, jej wartość to około 3.14159."
     ]
     print("\n# META-FEEDBACK LOOP / META-PĘTLA SPRZĘŻENIA ZWROTNEGO")
-    meta_result = meta_feedback_loop(test_fragments_emergence, all_scores, iterations=3)
+    # Ensure initial_all_scores is not empty if test_fragments_emergence is not empty
+    # to avoid issues in dynamic_thresholds if no scores are generated internally first
+    if not initial_all_scores and test_fragments_emergence:
+        # Provide a fallback if initial_all_scores was empty
+        loop_initial_scores = [random.uniform(0,1) for _ in test_fragments_emergence]
+    else:
+        loop_initial_scores = initial_all_scores
+        
+    meta_result = meta_feedback_loop(test_fragments_emergence, loop_initial_scores, iterations=3)
     for step in meta_result['history']:
-        print(f"Iteration {step['iteration']} - Types: {step['types']}, Thresholds: {step['thresholds']}, Entropy: {step['entropies']}")
+        print(f"Iteration {step['iteration']} - Types: {step['types']}, Thresholds: {step['thresholds']}")
+        # Full entropy details can be verbose, so commented out, but available in step['entropies']
+        # print(f"  Entropies: {step['entropies']}") 
     print(f"\nNew Ψ types detected (Emergent): {meta_result['new_types_detected']}")
 
 """
@@ -212,6 +302,6 @@ if __name__ == "__main__":
 # - Granice Ψᴷ (particles) i Ψʰ (shadows) nie są sztywne – system GTMØ automatycznie je dostraja do aktualnej epistemicznej sytuacji korpusu.
 # - Zmiana progu Ψᴷ powoduje, że do tej klasy trafiają tylko najbardziej „jasne”, wyraźne fragmenty wiedzy, niezależnie od szumu i liczby przykładów.
 # - Zmiana progu Ψʰ pozwala na dynamiczną detekcję fragmentów najbardziej nieokreślonych (cieni), nawet jeśli zmienia się jakość całej bazy wiedzy.
-# - Jeśli całość wiedzy staje się mniej precyzyjna, progi się zaostrzają – GTMØ nie zaniża wymagań poznawczych!
+# - Jeśli całość wiedzy staje się mniej precyzyzyjna, progi się zaostrzają – GTMØ nie zaniża wymagań poznawczych!
 # - Meta-feedback loop iteracyjnie może uczyć system, które progi najlepiej wyłapują realne Ψᴷ i Ψʰ w danym środowisku (meta-adaptacja, zgodna z AX7).
 """
