@@ -1,0 +1,68 @@
+# ℓ∅ – Alienated Numbers Type System in GTMØ
+
+from typing import Any
+
+class AlienatedNumber:
+    """
+    Type representing Alienated Numbers (ℓ∅) within the GTMØ framework.
+
+    Alienated Numbers:
+    - Do not belong to classical numeric sets (ℕ, ℤ, ℚ, ℝ, ℂ).
+    - Are irreducible to algebraic, trigonometric, or symbolic forms.
+    - Trigger cognitive and computational singularities, resulting in Ø emergence.
+    """
+
+    def __init__(self, identifier: Any):
+        """
+        Initialize with a symbolic identifier since ℓ∅ lacks numeric form.
+        """
+        self.identifier = identifier
+
+    def __repr__(self):
+        return f"ℓ∅({self.identifier})"
+
+    def __add__(self, other):
+        """
+        Arithmetic operations involving ℓ∅ lead uniformly to cognitive singularity (Ø).
+        Explicitly handles different operand types.
+        """
+        if isinstance(other, AlienatedNumber):
+            return "Emergence of Ø – operation undefined between ℓ∅ types"
+        elif isinstance(other, (int, float, complex)):
+            return "Emergence of Ø – operation undefined with numeric types"
+        else:
+            return "Emergence of Ø – operation undefined with non-numeric type"
+
+    def __mul__(self, other):
+        """
+        Multiplication involving ℓ∅ uniformly leads to cognitive singularity (Ø).
+        Explicitly handles different operand types.
+        """
+        if isinstance(other, AlienatedNumber):
+            return "Emergence of Ø – operation undefined between ℓ∅ types"
+        elif isinstance(other, (int, float, complex)):
+            return "Emergence of Ø – operation undefined with numeric types"
+        else:
+            return "Emergence of Ø – operation undefined with non-numeric type"
+
+    def Ψ_GTMØ_score(self):
+        """
+        Evaluates epistemic purity (proximity to Ø).
+        Returns a value asymptotically approaching 1, reflecting that ℓ∅ represents a state of near-complete epistemic indefiniteness in GTMØ theory.
+        """
+        return 0.999999999
+
+    def E_GTMØ_entropy(self):
+        """
+        Evaluates cognitive entropy – minimal for ℓ∅, reflecting maximum epistemic certainty within GTMØ theory. 
+        The near-zero entropy value signifies that ℓ∅ embodies a definitive boundary condition (Ø), indicating the limit of definitional structure and representational completeness.
+        """
+        return 1e-9
+
+# Example usage:
+if __name__ == "__main__":
+    alien_number = AlienatedNumber("α")
+    print(alien_number)
+    print(alien_number + 5)
+    print("Ψ_GTMØ:", alien_number.Ψ_GTMØ_score())
+    print("E_GTMØ:", alien_number.E_GTMØ_entropy())
