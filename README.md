@@ -8,8 +8,11 @@ Four Ontological Categories:
 GTMØ posits that all objects and phenomena can, in principle, be classified into four fundamental categories:
 
 <b> Zero (0) </b>: Non-being (nothingness)
+
 <b> One (1) </b>: Being (definite existence)
+
 <b> Infinity (∞) </b>: Unboundedness (that which surpasses all finite limits)
+
 <b> Indefiniteness (Ø) </b> : That which cannot be fully defined, determined, or reduced to the previous categories; the mathematical and epistemic singularity.
 
 # Axiom of Ontological Indefiniteness:
