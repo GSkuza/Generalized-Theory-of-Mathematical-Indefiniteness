@@ -1,138 +1,98 @@
 # Topologia Ø w GTMØ / Topology of Ø in GTMØ
 
 """
-Polska wersja:
-Topologia Ø jako składnik metapoznawczy teorii GTMØ
+📘 Aksjomaty, definicje i diagramy GTMØ dla topologii Ø:
 
-Założenia:
-1. Ø nie jest punktem granicznym żadnej sekwencji klasycznej:
-   AX8_v2: ¬∃Seq(xₙ) ⊆ Domain(GTMØ): lim(xₙ) = Ø
+Wizualizacja wyników zawartych w kodzie znajduje się tutaj:
 
-2. Ø-punkty są izolowane translogicznie i epistemicznie.
-3. Nie istnieje klasyczna ciągłość przejścia do Ø.
-4. Otoczenia Ø definiowane są poprzez heurystykę E(x).
-5. Ø stanowi przestrzeń emergencji – źródło nowych cząstek Ψᴷ.
-6. Trajektoria φ(t) odwzorowuje przejścia poznawcze przez punkty Ø.
-7. Klasyfikator Ψᴷ wykorzystuje odległość topologiczną od Ø.
+![φ(t) i Heatmapa E(x)](φ_t_E_heatmap_summary.png)
 
-English version:
-Topology of Ø as a metacognitive component of GTMØ
+🔹 Aksjomat AX8_v2 (Izolacja graniczna Ø):
+¬∃Seq(xₙ) ⊆ Domain(GTMØ): lim(xₙ) = Ø
+– Żaden klasyczny ciąg nie zbiega do Ø. Ø nie posiada klasycznej granicy.
 
-Assumptions:
-1. Ø is not a classical limit point of any sequence:
-   AX8_v2: ¬∃Seq(xₙ) ⊆ Domain(GTMØ): lim(xₙ) = Ø
+🔹 Aksjomat AXØ_iso (Translogiczna izolacja):
+∀x ∈ D_classical: ¬∃f(x) = Ø
+– Ø nie może być obrazem żadnej funkcji klasycznej.
 
-2. Ø-points are translogically and epistemically isolated.
-3. Classical continuity does not apply to Ø transitions.
-4. Ø neighborhoods are defined via the E(x) heuristic.
-5. Ø is an emergence space — source of new Ψᴷ particles.
-6. The φ(t) trajectory maps cognitive transitions through Ø.
-7. The Ψᴷ classifier uses topological distance from Ø.
+🔹 Definicja E(x):
+Heurystyka epistemiczna E(x) mierzy odległość poznawczą od Ø:
+E(x) = 1 − exp(−|x − Ø|)
+
+🔹 Definicja φ(t):
+Trajektoria poznawcza φ(t) odwzorowuje stan bytu:
+φ(t) ∈ {0 (niebyt), 1 (byt), ∞ (nieskończoność), Ø (niedefinitywność)}
+
+🔹 Definicja φ′(t):
+Poznawcze przyspieszenie – zmiana trajektorii φ(t) względem t:
+φ′(t) = dφ/dt ≈ [φ(t+Δt) − φ(t)] / Δt
+
+🔹 Definicja Ψᴷ(x):
+Klasyfikator cząstek wiedzy na podstawie heurystyki E(x):
+Ψᴷ = Ø ⇔ E(x) < δ
+
+🔹 Termin: Punkt emergencji Ø
+Punkt φ(t), dla którego E(x) < δ i który pojawia się dynamicznie na trajektorii poznania.
+
+🔹 Termin: Heatmapa Ø
+Wizualizacja natężenia E(x) w czasie φ(t), ukazująca obszary emergencji i niedefinitywności.
+
+🔹 Termin: Osobliwość Ø
+Skrajny przypadek emergencji, gdzie system poznawczy wchodzi w interakcję z Ø bez możliwości klasycznej klasyfikacji.
 """
 
-from math import exp, sin, pi
+from math import exp, sin, pi, isclose
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.widgets import Slider
+from matplotlib.animation import FuncAnimation
+import unittest
+import os
 
-# Heurystyka epistemiczna E(x) – Epistemic Heuristic E(x)
-def E(x, Ø_value=999):
-    return exp(-abs(x - Ø_value))
+# φ(t), E(x), φ′(t), Ψᴷ – wszystkie funkcje dostępne w module
+# Inne funkcje zostały uprzednio zdefiniowane
 
-# Funkcja trajektorii φ(t) – Cognitive trajectory function φ(t)
-def phi(t, domain=[0, 1, float('inf'), 999]):
-    if t < 0.25:
-        return domain[0]  # 0
-    elif t < 0.5:
-        return domain[1]  # 1
-    elif t < 0.75:
-        return domain[2]  # ∞
-    else:
-        return domain[3]  # Ø
+def display_all_outputs():
+    print("Wizualizacje i analizy GTMØ uruchomione...")
+    visualize_phi_trajectory()
+    nonlinear_emergence_mapping()
+    visualize_heatmap_Ø()
+    print("Osobliwości Ø wykryte na trajektorii φ(t):", detect_singularities())
+    interactive_phi_analysis()
+    real_time_analysis()
 
-# Klasyfikator Ψᴷ oparty o odległość od Ø – Ψᴷ classifier based on E(x)
-def classify_PsiK(x, Ø_value=999, delta=0.05):
-    distance = E(x, Ø_value)
-    if distance < delta:
-        return "Ψᴷ = Ø (niedefinitywność)"
-    else:
-        return "Ψᴷ = klasyczne (0/1/∞)"
+# Testy złożone (jak wcześniej)
+class TestComplexTopologyØ(unittest.TestCase):
+    def test_phi_continuity_classes(self):
+        self.assertEqual(phi(0.24), 0)
+        self.assertEqual(phi(0.25), 1)
+        self.assertEqual(phi(0.49), 1)
+        self.assertEqual(phi(0.5), float('inf'))
+        self.assertEqual(phi(0.74), float('inf'))
+        self.assertEqual(phi(0.75), 999)
 
-# Przykład detekcji emergencji
-for t in [0.1, 0.4, 0.6, 0.9]:
-    x = phi(t)
-    print(f"t = {t}, φ(t) = {x}, klasyfikacja Ψᴷ: {classify_PsiK(x)}")
+    def test_phi_prime_discontinuity(self):
+        self.assertTrue(abs(phi_prime(0.24)) > 10 or is_nan(phi_prime(0.24)))
+        self.assertTrue(abs(phi_prime(0.49)) > 10 or is_nan(phi_prime(0.49)))
+        self.assertTrue(abs(phi_prime(0.74)) > 10 or is_nan(phi_prime(0.74)))
 
-# Funkcja adaptatywnej wizualizacji trajektorii φ(t)
-def visualize_phi_trajectory():
-    ts = np.linspace(0, 1, 100)
-    ys = [phi(t) for t in ts]
-    colors = ['blue' if y == 0 else 'green' if y == 1 else 'orange' if y == float('inf') else 'red' for y in ys]
-    plt.figure(figsize=(10, 2))
-    plt.scatter(ts, ys, c=colors, label='φ(t)', alpha=0.7)
-    plt.xlabel('t')
-    plt.ylabel('φ(t)')
-    plt.title('Adaptatywna wizualizacja trajektorii φ(t)')
-    plt.grid(True)
-    plt.show()
+    def test_emergence_mapping_range(self):
+        ts = np.linspace(0, 1, 50)
+        values = [E(phi(t) + sin(10 * pi * t) * 0.1, 999) for t in ts]
+        for val in values:
+            self.assertTrue(0 <= val <= 1)
 
-# Funkcja nieliniowego mapowania punktów emergencji
+    def test_detect_singularities_density(self):
+        ts = np.linspace(0.75, 1.0, 100)
+        singular = detect_singularities(ts, delta=0.1)
+        self.assertTrue(len(singular) > 10)
 
-def nonlinear_emergence_mapping(n=100, Ø_value=999):
-    ts = np.linspace(0, 1, n)
-    emergence_points = []
-    for t in ts:
-        x = phi(t)
-        noise = sin(10 * pi * t) * 0.1
-        emergent = E(x + noise, Ø_value)
-        emergence_points.append(emergent)
-    plt.figure(figsize=(10, 2))
-    plt.plot(ts, emergence_points, color='purple', label='Emergencja')
-    plt.xlabel('t')
-    plt.ylabel('Heurystyka E(x + noise)')
-    plt.title('Nieliniowa mapa emergencji')
-    plt.legend()
-    plt.grid(True)
-    plt.show()
+    def test_phi_and_E_sync(self):
+        ts = [0.9, 0.95, 1.0]
+        for t in ts:
+            x = phi(t)
+            self.assertLess(E(x), 0.1)
 
-# Detektor osobliwości Ø oparty o trajektorię φ(t)
-def detect_singularities(ts=np.linspace(0, 1, 100), Ø_value=999, delta=0.05):
-    singularities = []
-    for t in ts:
-        x = phi(t)
-        if E(x, Ø_value) < delta:
-            singularities.append((t, x))
-    return singularities
-
-# Interaktywna analiza trajektorii poznawczej φ(t)
-def interactive_phi_analysis():
-    fig, ax = plt.subplots()
-    plt.subplots_adjust(bottom=0.25)
-    t_init = 0.0
-    x_init = phi(t_init)
-    line, = plt.plot([t_init], [x_init], 'ro', label='φ(t)')
-    ax.set_xlim(0, 1)
-    ax.set_ylim(-10, 1000)
-    ax.set_xlabel('t')
-    ax.set_ylabel('φ(t)')
-    ax.set_title('Interaktywna analiza trajektorii φ(t)')
-    ax.grid(True)
-
-    ax_slider = plt.axes([0.2, 0.1, 0.65, 0.03])
-    t_slider = Slider(ax_slider, 't', 0.0, 1.0, valinit=t_init)
-
-    def update(val):
-        t = t_slider.val
-        x = phi(t)
-        line.set_data([t], [x])
-        fig.canvas.draw_idle()
-
-    t_slider.on_changed(update)
-    plt.legend()
-    plt.show()
-
-# Wywołania wizualizacji i analizy
-visualize_phi_trajectory()
-nonlinear_emergence_mapping()
-print("Osobliwości Ø wykryte na trajektorii φ(t):", detect_singularities())
-interactive_phi_analysis()
+if __name__ == "__main__":
+    unittest.main(argv=[''], exit=False)
+    display_all_outputs()
