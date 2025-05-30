@@ -1,6 +1,6 @@
-**# Twierdzenia Operacyjne GTMØ – Dokumentacja
+## Twierdzenia Operacyjne GTMØ – Dokumentacja
 
-## author: Grzegorz Skuza (grzegorzskuza@gmail.com)
+author: Grzegorz Skuza (grzegorzskuza@gmail.com)
 
 ## 📘 Opis
 
