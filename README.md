@@ -13,7 +13,7 @@ GTMØ posits that all objects and phenomena can, in principle, be classified int
 
 <b> Infinity (∞) </b>: Unboundedness (that which surpasses all finite limits)
 
-<b> Indefiniteness (Ø) </b> : That which cannot be fully defined, determined, or reduced to the previous categories; the mathematical and epistemic singularity.
+<b> Undefiniteness (Ø) </b> : That which cannot be fully defined, determined, or reduced to the previous categories; the mathematical and epistemic singularity.
 
 # Axiom of Ontological Indefiniteness:
 There exist entities, statements, or processes that are neither reducible to being, non-being, nor infinity, but rather manifest as indefinite (Ø). These may correspond to paradoxes, boundary cases in mathematics, or phenomena at the limits of language and computation.
@@ -26,7 +26,7 @@ No function, operation, or logical rule within a well-defined system can generat
 # Dynamic Boundaries:
 The theory treats boundaries of formal systems (such as Gödelian incompleteness, Turing’s halting problem, and set-theoretic paradoxes) as dynamic phenomena. The encounter with Ø is not a static property, but a process—a trajectory—in the state space of the system.
 
-# Field of Indefiniteness (Φ_Ø):
+# Field of Undefiniteness (Φ_Ø):
 The presence of indefiniteness in a system is modeled as a dynamic field (Φ_Ø) that may fluctuate in intensity and propagate through interconnected systems (e.g., knowledge graphs, evolving mathematical theories).
 
 # Irreversibility:
