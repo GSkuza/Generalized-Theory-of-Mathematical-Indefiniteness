@@ -1,5 +1,5 @@
-# Generalized-Theory-of-Mathematical-Indefiniteness
-<b>The Generalized Theory of Mathematical Indefiniteness (GTMØ)</b> is an innovative mathematical and philosophical framework that extends classical concepts of existence, non-existence, and infinity. GTMØ introduces indefiniteness (Ø) as a fourth, irreducible category of reality—beyond what is classically definable in logic and mathematics.
+# Generalized-Theory-of-Mathematical-Undefiniteness
+<b>The Generalized Theory of Mathematical Undefiniteness (GTMØ)</b> is an innovative mathematical and philosophical framework that extends classical concepts of existence, non-existence, and infinity. GTMØ introduces indefiniteness (Ø) as a fourth, irreducible category of reality—beyond what is classically definable in logic and mathematics.
 
 The theory will be progressively developed with the aim of obtaining the most complete picture of the issues it addresses. Its author is <b>Grzegorz Skuza</b> mail: grzegorzskuza@gmail.com.
 
